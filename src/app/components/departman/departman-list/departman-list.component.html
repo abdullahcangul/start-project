@@ -1,0 +1,37 @@
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      
+      <div class="card-description">
+          <div class="col-md-10"></div>
+        <button [routerLink]="['/departmant/add']" class="btn btn-success btn-sm pull-right">Ekle</button>
+        <h3>Departmant</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th>Departman Adı</th>
+                  <th>Acıklama</th>
+                  <th></th>
+                  <td></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let departmant of departmants">
+                  <td>{{departmant.name}}</td>
+                  <td>{{departmant.description}}</td>
+                  <td></td>
+                  <td>
+                   
+                    <button (click)="onUptdate(departmant)" class="btn btn-info" style="margin: 5px">Duzenle</button>
+                    <button (click)="onDelete(departmant)" class="btn btn-danger btn-sm">Sil</button>
+                  </td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

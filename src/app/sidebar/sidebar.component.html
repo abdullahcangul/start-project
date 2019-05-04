@@ -1,0 +1,108 @@
+<nav *ngIf="employee!=null;else musteri" class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="http://localhost:58371/{{employee.profileImageFilename}}" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">{{employee.name}} {{employee.surname}}</p>
+            <div>
+              <small class="designation text-muted">Çalışan</small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+        <button routerLink="/project/add" class="btn btn-success btn-block">New Project
+          <i class="mdi mdi-plus"></i>
+        </button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/employee" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-notification-clear-all"></i>
+        <span class="menu-title">Kullanıcılar</span>
+      </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/customer" routerLinkActive="active">
+          <i class="menu-icon mdi mdi-dna"></i>
+          <span class="menu-title">Çalısılan firmalar</span>
+        </a>
+      </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/project" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-dna"></i>
+        <span class="menu-title">Projeler</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/process" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-trackpad"></i>
+        <span class="menu-title">İşlemler</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/title" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-texture"></i>
+        <span class="menu-title">Title</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/departmant" routerLinkActive="active">
+        <i class="menu-icon mdi mdi-content-copy"></i>
+        <span class="menu-title">Depertmant</span>
+      </a>
+    </li>
+    
+  </ul>
+</nav>
+
+<ng-template #musteri>
+    <nav  class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                  <img src="assets/images/faces/face1.jpg" alt="profile image">
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name">{{customer.name}}</p>
+                  <div>
+                    <small class="designation text-muted">Müsteri</small>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/project" routerLinkActive="active">
+              <i class="menu-icon mdi mdi-dna"></i>
+              <span class="menu-title">Projeler</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/process" routerLinkActive="active">
+              <i class="menu-icon mdi mdi-trackpad"></i>
+              <span class="menu-title">İşlemler</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+</ng-template>

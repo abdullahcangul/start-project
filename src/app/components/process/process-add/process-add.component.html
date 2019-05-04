@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">İşlemler</h4>
+          <p class="card-description">
+           İşlem Ekle
+          </p>
+          <form [formGroup]="AddForm" (ngSubmit)="add()" class="forms-sample">
+           
+            <div class="form-group">
+              <label for="priority">Öncelik</label>
+             <select class="form-control form-control-lg" formControlName="priority" name="priority" id="priority">
+                <option class="dropdown-item" value="Acil" >Acil</option>
+                <option class="dropdown-item" value="Normal">Normal</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <input type="date" formControlName="projectedFinishDate" class="form-control" id="projectedFinishDate"
+                placeholder="Isim"/>
+            </div>
+            <div class="form-group">
+                <label for="status">Durumu</label>
+               <select class="form-control form-control-lg" formControlName="status" [(ngModel)]="process.status">
+                  <option class="dropdown-item" value="İstek Alındı" >İstek Alındı</option>
+                  <option class="dropdown-item" value="üzerinde Çalısılıyor" >üzerinde Çalısılıyor</option>
+                  <option class="dropdown-item" value="Bitti" >Bitti</option>
+                </select>
+              </div>
+  
+              <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
+              <button class="btn btn-light">Cancel</button>
+              <h6>{{AddForm.value|json}}</h6>
+              <h6>{{AddForm.status|json}}</h6>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 

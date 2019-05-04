@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Employee</h4>
+        <p class="card-description">
+          Basic form elements
+        </p>
+        <form [formGroup]="AddForm" (ngSubmit)="uptdate()" class="forms-sample">
+          <div class="form-group">
+            <label for="name">Firma Isimi</label>
+            <input type="text" formControlName="name" class="form-control" id="name" placeholder="Isim">
+            <span class="help-block  text-danger" *ngIf="AddForm.get('name').hasError('required') && AddForm.get('name').touched">
+              Firma  Adı alanı zorunludur
+           </span>
+           <span class="help-block text-danger" *ngIf="AddForm.get('name').hasError('maxlength') && AddForm.get('name').touched">
+            Max 25 karakter
+          </span>
+          <span class="help-block text-danger" *ngIf="AddForm.get('name').hasError('maxlength') && AddForm.get('name').touched">
+            Min 3 karakter
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="surname">Yetkili(Kalksınmı)</label>
+            <input type="text" formControlName="competnent" class="form-control" id="competnent" placeholder="Yetkili">
+            <span class="help-block" *ngIf="AddForm.get('competnent').hasError('required') && AddForm.get('competnent').touched">
+              surname alanı zorunludur
+           </span>
+           <span class="help-block text-danger " *ngIf="AddForm.get('competnent').hasError('maxlength') && AddForm.get('competnent').touched">
+              Max 25 karakter
+            </span>
+            <span class="help-block text-danger" *ngIf="AddForm.get('competnent').hasError('minlength') && AddForm.get('competnent').touched">
+              Min 3 karakter
+              </span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" formControlName="email" class="form-control"  id="email" placeholder="Email">
+            <span class="help-block text-danger" *ngIf="AddForm.get('email').hasError('required') && AddForm.get('email').touched">
+              Email alanı zorunludur
+           </span>
+           <span class="help-block text-danger " *ngIf="AddForm.get('email').hasError('email') && AddForm.get('email').touched">
+              Gecerli Bir email adresi girin
+            </span>
+          </div>
+         
+          <div class="form-group">
+            <label for="password">Sifre</label>
+            <input type="password" formControlName="password" name="password" class="form-control" id="password" placeholder="Sifre">
+            <span class="help-block text-danger" *ngIf="AddForm.get('password').hasError('required') && AddForm.get('password').touched">
+              Sifre alanı zorunludur
+           </span>
+           <span class="help-block text-danger" *ngIf="AddForm.get('password').hasError('minlength') && AddForm.get('password').touched">
+            En Az 3 Karakter girilmeli
+          </span>
+          <span class="help-block text-danger " *ngIf="AddForm.get('password').hasError('maxlength') && AddForm.get('password').touched">
+           En Fazla 15 Karakter girilmeli
+         </span>
+          </div>
+
+          <div class="form-group">
+            <label for="username">url</label>
+            <input type="text" formControlName="url" name="url" class="form-control" id="url" placeholder="url">
+            <span class="help-block" *ngIf="AddForm.get('url').hasError('required') && AddForm.get('url').touched">
+              Url alanı zorunludur
+           </span>
+           <span class="help-block text-danger" *ngIf="AddForm.get('url').hasError('maxlength') && AddForm.get('url').touched">
+              Max 20 karakter
+            </span>
+            <span class="help-block text-danger" *ngIf="AddForm.get('url').hasError('minlength') && AddForm.get('url').touched">
+              Min 3 karakter
+              </span>
+          </div>
+          <div class="form-group">
+            <label for="description">Açıklama</label>
+            <input formControlName="description" type="text" class="form-control" id="description" placeholder="Açıklama">
+          </div>
+        
+          <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+          <h6>{{AddForm.value|json}}</h6>
+          <h6>{{AddForm.status|json}}</h6>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

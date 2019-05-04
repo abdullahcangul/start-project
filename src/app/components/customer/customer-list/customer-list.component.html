@@ -1,0 +1,37 @@
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      
+      <div class="card-description">
+          <div class="col-md-10"></div>
+        <button [routerLink]="['/customer/add']" class="btn btn-success btn-sm pull-right">Ekle</button>
+        <h3>Müsteri Bilgisi</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th>Firma Adı</th>
+                  <th>Email</th>
+                  <th>url</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let customer of customers">
+                  <td>{{customer.name}}</td>
+                  <td>{{customer.email}}</td>
+                  <td>{{customer.url}}</td>
+                  <td>
+                    <button (click)="onDetail(customer)" class="btn btn-info" style="margin: 5px">Detay</button>
+                    <button (click)="onUptdate(customer)" class="btn btn-info" style="margin: 5px">Duzenle</button>
+                    <button (click)="onDelete(customer)" class="btn btn-danger btn-sm">Sil</button>
+                  </td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

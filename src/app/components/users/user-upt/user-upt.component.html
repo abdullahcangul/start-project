@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Basic form</h4>
+        <p class="card-description">
+          Basic form elements 
+        </p>
+        <form [formGroup]="userUptdateForm" (ngSubmit)="add()"  class="forms-sample ng-untouched ng-pristine ng-valid" novalidate="">
+          <div class="form-group">
+            <label for="name">Isim</label>
+            <input type="text" formControlName="name" class="form-control" id="name"  value="wsqsw">
+            <span class="help-block" *ngIf="userAddForm.get('name').hasError('required')">
+              Adı alanı zorunludur 
+           </span>
+          </div>
+          <div class="form-group">
+            <label for="surname">Soyisim</label>
+            <input type="text" value="{{user.surname}}" formControlName="surname" class="form-control" id="surname" placeholder="Soyisim">
+            <span class="help-block"  *ngIf="userAddForm.get('surname').hasError('required')" >
+              surname alanı zorunludur
+           </span>
+          </div>
+          <div class="form-group">
+            <label for="username">Kullanıcı Adı</label>
+            <input type="text" value="{{user.username}}" formControlName="username" class="form-control" id="username" placeholder="Kullanıcı Adı">
+            <span class="help-block"  *ngIf="userAddForm.get('username').hasError('required') ">
+              Username alanı zorunludur
+           </span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" value="{{user.email}}" formControlName="email" class="form-control"  id="email" placeholder="Email">
+            <span class="help-block"  *ngIf="userAddForm.get('email').hasError('required') ">
+              Email alanı zorunludur
+           </span>
+          </div>
+          <div class="form-group">
+            <label for="username">Sifre</label>
+            <input type="password" value="{{user.password}}" formControlName="password" class="form-control" id="password" placeholder="Sifre">
+            <span class="help-block"  *ngIf="userAddForm.get('password').hasError('required') ">
+              Sifre alanı zorunludur
+           </span>
+          </div>
+          <div class="form-group">
+            <label for="profileImageFilename">Resim</label>
+            <input formControlName="profileImageFilename" value="{{user.profileImageFilename}}" type="text" class="form-control" id="profileImageFilename" placeholder="profileImageFilename">
+          </div>
+        
+          <button [disabled]="!userUpdateForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

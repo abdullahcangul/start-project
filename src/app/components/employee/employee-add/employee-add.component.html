@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Employee</h4>
+          <p class="card-description">
+            Basic form elements
+          </p>
+          <form [formGroup]="employeeAddForm" (ngSubmit)="add()" class="forms-sample">
+            <div class="form-group">
+              <label for="name">Isim</label>
+              <input type="text" formControlName="name" name="name" class="form-control" id="name" placeholder="Isim" autofocus>
+              <span class="help-block text-danger" *ngIf="employeeAddForm.get('name').hasError('required') && employeeAddForm.get('name').touched">
+                Adı alanı zorunludur
+             </span>
+             <span class="help-block text-danger" *ngIf="employeeAddForm.get('name').hasError('minlength') && employeeAddForm.get('name').touched">
+             En Az 3 Karakter girilmeli
+           </span>
+           <span class="help-block text-danger" *ngIf="employeeAddForm.get('name').hasError('maxlength') && employeeAddForm.get('name').touched">
+            En Fazla 25 Karakter girilmeli
+          </span>
+            </div>
+            <div class="form-group">
+              <label for="surname">Soyisim</label>
+              <input type="text" formControlName="surname" name="surname" class="form-control" id="surname" placeholder="Soyisim">
+              <span class="help-block" *ngIf="employeeAddForm.get('surname').hasError('maxlength') && employeeAddForm.get('surname').touched">
+                En Fazla 25 Karakter girilmeli
+              </span>
+              <span class="help-block text-danger" *ngIf="employeeAddForm.get('surname').hasError('required') && employeeAddForm.get('surname').touched">
+                Soyisim alanı zorunludur
+             </span>
+             <span class="help-block text-danger" *ngIf="employeeAddForm.get('surname').hasError('minlength') && employeeAddForm.get('surname').touched">
+              En Az 3 Karakter girilmeli
+            </span>
+         
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" formControlName="email" name="email" class="form-control"  id="email" placeholder="Email">
+              <span class="help-block text-danger" *ngIf="employeeAddForm.get('email').hasError('required') && employeeAddForm.get('email').touched">
+                Email alanı zorunludur
+             </span>
+             <span class="help-block text-danger" *ngIf="employeeAddForm.get('email').hasError('email') && employeeAddForm.get('email').touched">
+             Geçerli bir email girin
+           </span>
+            </div>
+     
+
+            <div class="form-group">
+              <label for="username">Sifre</label>
+              <input type="password" formControlName="password" name="password" class="form-control" id="password" placeholder="Sifre">
+              <span class="help-block text-danger" *ngIf="employeeAddForm.get('password').hasError('required') && employeeAddForm.get('password').touched">
+                Sifre alanı zorunludur
+             </span>
+             <span class="help-block text-danger" *ngIf="employeeAddForm.get('password').hasError('minlength') && employeeAddForm.get('password').touched">
+              En Az 3 Karakter girilmeli
+            </span>
+            <span class="help-block text-danger " *ngIf="employeeAddForm.get('password').hasError('maxlength') && employeeAddForm.get('password').touched">
+             En Fazla 15 Karakter girilmeli
+           </span>
+            </div>
+            <div class="form-group">
+              <label for="TitleID">Unvan</label>
+             <select class="form-control form-control-lg" formControlName="TitleID">
+                <option class="dropdown-item" [value]="title.ID" *ngFor="let title of titles"> {{title.name}}</option>
+              </select>
+            </div>
+           
+            <div class="form-group">
+              <label for="DepartmantID">Departman</label>
+             <select class="form-control form-control-lg" formControlName="DepartmantID">
+                <option class="dropdown-item" [value]="depertmant.ID" *ngFor="let depertmant of departmants"> {{depertmant.name}}</option>
+              </select>
+            </div>
+           <div class="form-group">
+            <p>Resim yükle</p>
+            <input class="btn mdi mdi-upload" (change)="picked($event,1)" type="file">
+           </div>
+
+            <button [disabled]="!employeeAddForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
+            <button class="btn btn-light">Cancel</button>
+            <h6>{{employeeAddForm.value|json}}</h6>
+            <h6>{{employeeAddForm.status|json}}</h6>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

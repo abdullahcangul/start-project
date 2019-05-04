@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Employee</h4>
+        <p class="card-description">
+          Basic form elements
+        </p>
+        <form [formGroup]="employeeUptdateForm" (ngSubmit)="uptdate()" class="forms-sample" >
+          <div class="form-group">
+            <label for="name">Isim</label>
+            <input type="text" formControlName="name" class="form-control" id="name" >
+            <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('name').hasError('required') && employeeUptdateForm.get('name').touched">
+              Adı alanı zorunludur
+           </span>
+           <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('name').hasError('minlength') && employeeUptdateForm.get('name').touched">
+           En Az 3 Karakter girilmeli
+         </span>
+         <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('name').hasError('maxlength') && employeeUptdateForm.get('name').touched">
+          En Fazla 25 Karakter girilmeli
+        </span>
+          </div>
+          <div class="form-group">
+            <label for="surname">Soyisim</label>
+            <input type="text" formControlName="surname" class="form-control" id="surname" placeholder="Soyisim">
+            <span class="help-block" *ngIf="employeeUptdateForm.get('surname').hasError('maxlength') && employeeUptdateForm.get('surname').touched">
+              En Fazla 25 Karakter girilmeli
+            </span>
+            <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('surname').hasError('required') && employeeUptdateForm.get('surname').touched">
+              Soyisim alanı zorunludur
+           </span>
+           <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('surname').hasError('minlength') && employeeUptdateForm.get('surname').touched">
+            En Az 3 Karakter girilmeli
+          </span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" formControlName="email" class="form-control"  id="email" placeholder="Email">
+            <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('email').hasError('required') && employeeUptdateForm.get('email').touched">
+              Email alanı zorunludur
+           </span>
+           <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('email').hasError('email') && employeeUptdateForm.get('email').touched">
+           Geçerli bir email girin
+         </span>
+          </div>
+         
+          <div class="form-group">
+            <label for="username">Sifre</label>
+            <input type="password" formControlName="password" class="form-control" id="password" placeholder="Sifre">
+            <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('password').hasError('required') && employeeUptdateForm.get('password').touched">
+              Sifre alanı zorunludur
+           </span>
+           <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('password').hasError('minlength') && employeeUptdateForm.get('password').touched">
+            En Az 3 Karakter girilmeli
+          </span>
+          <span class="help-block text-danger " *ngIf="employeeUptdateForm.get('password').hasError('maxlength') && employeeUptdateForm.get('password').touched">
+           En Fazla 15 Karakter girilmeli
+         </span>
+          </div>
+
+          <div class="form-group">
+            <label for="TitleID">Unvan</label>
+           <select  class="form-control form-control-lg" [(ngModel)]="selectedTitle" formControlName="TitleID">
+             <option class="dropdown-item" *ngFor="let title of titles" [value]="title.ID" > {{title.name}}</option>
+            </select>
+          </div>
+         
+          <div class="form-group">
+            <label for="DepartmantID">Departman</label>
+           <select   class="form-control form-control-lg" [(ngModel)]="selectedDepartmant" formControlName="DepartmantID">
+              <option class="dropdown-item" [value]="depertmant.ID" *ngFor="let depertmant of departmants"> {{depertmant.name}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+              <p>Resim yükle</p>
+              <input class="btn mdi mdi-upload" (change)="picked($event,1)" type="file">
+             </div>
+
+          <button [disabled]="!employeeUptdateForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+          <h6>{{employeeUptdateForm.value|json}}</h6>
+          <h6>{{employeeUptdateForm.status|json}}</h6>
+          {{selectedTitle}}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
