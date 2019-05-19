@@ -2,9 +2,9 @@
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Employee</h4>
+        <h4 class="card-title">Kullanıcı Düzenle</h4>
         <p class="card-description">
-          Basic form elements
+          
         </p>
         <form [formGroup]="employeeUptdateForm" (ngSubmit)="uptdate()" class="forms-sample" >
           <div class="form-group">
@@ -23,7 +23,7 @@
           <div class="form-group">
             <label for="surname">Soyisim</label>
             <input type="text" formControlName="surname" class="form-control" id="surname" placeholder="Soyisim">
-            <span class="help-block" *ngIf="employeeUptdateForm.get('surname').hasError('maxlength') && employeeUptdateForm.get('surname').touched">
+            <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('surname').hasError('maxlength') && employeeUptdateForm.get('surname').touched">
               En Fazla 25 Karakter girilmeli
             </span>
             <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('surname').hasError('required') && employeeUptdateForm.get('surname').touched">
@@ -35,7 +35,7 @@
           </div>
 
           <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email">Email adresi</label>
             <input type="email" formControlName="email" class="form-control"  id="email" placeholder="Email">
             <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('email').hasError('required') && employeeUptdateForm.get('email').touched">
               Email alanı zorunludur
@@ -64,6 +64,10 @@
            <select  class="form-control form-control-lg" [(ngModel)]="selectedTitle" formControlName="TitleID">
              <option class="dropdown-item" *ngFor="let title of titles" [value]="title.ID" > {{title.name}}</option>
             </select>
+
+            <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('TitleID').hasError('required') && employeeUptdateForm.get('TitleID').touched">
+              Unvan alanı zorunludur
+           </span>
           </div>
          
           <div class="form-group">
@@ -71,6 +75,9 @@
            <select   class="form-control form-control-lg" [(ngModel)]="selectedDepartmant" formControlName="DepartmantID">
               <option class="dropdown-item" [value]="depertmant.ID" *ngFor="let depertmant of departmants"> {{depertmant.name}}</option>
             </select>
+            <span class="help-block text-danger" *ngIf="employeeUptdateForm.get('DepartmantID').hasError('required') && employeeUptdateForm.get('DepartmantID').touched">
+              Departman alanı zorunludur
+           </span>
           </div>
 
           <div class="form-group">
@@ -79,10 +86,7 @@
              </div>
 
           <button [disabled]="!employeeUptdateForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
-          <button class="btn btn-light">Cancel</button>
-          <h6>{{employeeUptdateForm.value|json}}</h6>
-          <h6>{{employeeUptdateForm.status|json}}</h6>
-          {{selectedTitle}}
+
         </form>
       </div>
     </div>

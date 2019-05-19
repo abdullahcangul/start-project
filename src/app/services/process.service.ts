@@ -29,12 +29,15 @@ export class ProcessService {
       return this.httpClient.get<Process>(this.path+"/"+processID)
   }
   getProccessOfProjectById(projectID):Observable<Process[]>{
-    return this.httpClient.get<Process[]>(this.path+"/"+"projects"+"/"+projectID)
+    return this.httpClient.get<Process[]>(this.path+"/"+"projectss"+"/"+projectID)
 }
-  add(process){
-    this.httpClient.post(this.path ,process).subscribe((data)=>{
-      this.router.navigateByUrl('process')
-      this.alertifyService.success(process.name+" Eklendi");
+  add(process:Process){
+    if(parseInt(localStorage.getItem("loginemployeeId"))){
+        process.EmployeeID=parseInt(localStorage.getItem("loginemployeeId"));
+    }
+    this.httpClient.post(this.path ,process).subscribe((data)=>{  
+      this.router.navigateByUrl('/project/detail')
+      this.alertifyService.success(process.priority+" öncelikli işlem Eklendi");
     },(err)=>{
       this.alertifyService.error(err);
     }
@@ -47,7 +50,7 @@ export class ProcessService {
      // this.router.navigateByUrl('customer/detail/'+data["ID"])
      
      this.router.navigateByUrl('process');
-     this.alertifyService.success(process.name+" Güncellendi");
+     this.alertifyService.success(process.priority+" öncelikli işlem Güncellendi");
     },(err)=>{
       this.alertifyService.error(err);
     });

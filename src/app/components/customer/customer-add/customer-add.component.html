@@ -2,7 +2,7 @@
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Customer</h4>
+        <h4 class="card-title">Firma</h4>
         <p class="card-description">
          
         </p>
@@ -10,7 +10,7 @@
           <div class="form-group">
             <label for="name">Firma Isimi</label>
             <input type="text" formControlName="name" class="form-control" id="name" placeholder="Isim">
-            <span class="help-block" *ngIf="AddForm.get('name').hasError('required') && AddForm.get('name').touched">
+            <span class="help-block text-danger" *ngIf="AddForm.get('name').hasError('required') && AddForm.get('name').touched">
               Adı alanı zorunludur
            </span>
            <span class="help-block text-danger" *ngIf="AddForm.get('name').hasError('maxlength') && AddForm.get('name').touched">
@@ -21,10 +21,10 @@
             </span>
           </div>
           <div class="form-group">
-            <label for="competnent">Yetkili(Kalksınmı)</label>
+            <label for="competnent">Yetkili Adı</label>
             <input type="text" formControlName="competnent" class="form-control" id="competnent" placeholder="Yetkili">
-            <span class="help-block" *ngIf="AddForm.get('competnent').hasError('required') && AddForm.get('competnent').touched">
-              surname alanı zorunludur
+            <span class="help-block text-danger" *ngIf="AddForm.get('competnent').hasError('required') && AddForm.get('competnent').touched">
+              Yetkili alanı zorunludur
            </span>
            <span class="help-block text-danger " *ngIf="AddForm.get('competnent').hasError('maxlength') && AddForm.get('competnent').touched">
               Max 25 karakter
@@ -35,7 +35,7 @@
           </div>
 
           <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email">Email adresi</label>
             <input type="email" formControlName="email" class="form-control"  id="email" placeholder="Email">
             <span class="help-block text-danger" *ngIf="AddForm.get('email').hasError('required') && AddForm.get('email').touched">
               Email alanı zorunludur
@@ -48,13 +48,13 @@
           <div class="form-group">
             <label for="username">Sifre</label>
             <input type="password" formControlName="password" name="password" class="form-control" id="password" placeholder="Sifre">
-            <span class="help-block text-danger" *ngIf="employeeAddForm.get('password').hasError('required') && employeeAddForm.get('password').touched">
+            <span class="help-block text-danger" *ngIf="AddForm.get('password').hasError('required') && AddForm.get('password').touched">
               Sifre alanı zorunludur
            </span>
-           <span class="help-block text-danger" *ngIf="employeeAddForm.get('password').hasError('minlength') && employeeAddForm.get('password').touched">
+           <span class="help-block text-danger" *ngIf="AddForm.get('password').hasError('minlength') && AddForm.get('password').touched">
             En Az 3 Karakter girilmeli
           </span>
-          <span class="help-block text-danger " *ngIf="employeeAddForm.get('password').hasError('maxlength') && employeeAddForm.get('password').touched">
+          <span class="help-block text-danger " *ngIf="AddForm.get('password').hasError('maxlength') && AddForm.get('password').touched">
            En Fazla 15 Karakter girilmeli
          </span>
           </div>
@@ -62,8 +62,8 @@
           <div class="form-group">
             <label for="username">url</label>
             <input type="password" formControlName="url" class="form-control" id="url" placeholder="url">
-            <span class="help-block" *ngIf="AddForm.get('url').hasError('required') && AddForm.get('url').touched">
-              Sifre alanı zorunludur
+            <span class="help-block text-danger" *ngIf="AddForm.get('url').hasError('required') && AddForm.get('url').touched">
+              url alanı zorunludur
            </span>
            <span class="help-block text-danger" *ngIf="AddForm.get('url').hasError('maxlength') && AddForm.get('url').touched">
               Max 20 karakter
@@ -75,14 +75,17 @@
           <div class="form-group">
             <label for="description">Açıklama</label>
             <input formControlName="description" type="text" class="form-control" id="description" placeholder="Açıklama">
+            <span class="help-block text-danger" *ngIf="AddForm.get('description').hasError('maxlength') && AddForm.get('description').touched">
+              Max 500 karakter
+            </span>
+          
           </div>
 
 
         
-          <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
-          <button class="btn btn-light">Cancel</button>
-          <h6>{{AddForm.value|json}}</h6>
-          <h6>{{AddForm.status|json}}</h6>
+          <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">KAYDET</button>
+          
+
         </form>
       </div>
     </div>

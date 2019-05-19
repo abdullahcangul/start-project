@@ -13,15 +13,17 @@ export class ProcessListComponent implements OnInit {
   selectedProcess: Process;
   processes:Process[];
   id:number;
-  constructor(private router: Router,private processServis:ProcessService,private alertifyService:AlertifyService) { }
+
+  constructor(private router: Router,
+    private processServis:ProcessService,
+    private alertifyService:AlertifyService) { }
 
   ngOnInit() {
-    let id = parseInt(localStorage.getItem("detailprojectId"));
-    console.log(id)
-    if(id){
-      this.getProcessesOfProject(id);
-      localStorage.removeItem("detailprojectId");
-    }else{
+    this.id = parseInt(localStorage.getItem("detailprojectId"));
+    if(this.id){
+      this.getProcessesOfProject(this.id);
+    }
+    else{
       this.getProcesses();
     }
     
@@ -37,14 +39,24 @@ export class ProcessListComponent implements OnInit {
     });
   }
 
+  getProcessesOfCustomer(id:number){
+    this.processServis.getProccessOfProjectById(id).subscribe(data => {
+      this.processes = data;
+    });
+  }
+
   onSelect(process: Process): void {
     this.selectedProcess = process;
   }
 
   onDelete(process: Process): void {
+    if(!confirm('Silmek istediğinizden emin misiniz ?')){
+      return
+    }
     this.processServis.delete(process.ID).subscribe(data=>{
       if(data){
-        this.getProcesses();
+       // this.getProcesses();
+       this.ngOnInit()
         this.alertifyService.success(process.priority +" Öncelikli işlem Silindi");
       }else{
         this.alertifyService.error("Hata olustu");

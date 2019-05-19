@@ -8,6 +8,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { Project } from 'src/app/entity/Project';
 import { ProcessService } from 'src/app/services/process.service';
 import { Process } from 'src/app/entity/Process';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-project-detail',
@@ -26,49 +27,93 @@ export class ProjectDetailComponent implements OnInit {
   customer:Customer;
   processes:Process[];
   project:Project;
+  selectedProcess: Process;
 
   constructor(  
     private router:Router,
-    private customerService:CustomerService,
     private projectService:ProjectService,
-    private processService:ProcessService,
+    private processServis:ProcessService,
+    private alertifyService:AlertifyService
 
    ) { }
 
     projectDetail(id:number) {
       console.log(id)
       
-      this.projectService.getProjectById(id).subscribe(data=>{
-       
-        this.project=data;
-
-      });
-
-      this.processService.getProccessOfProjectById(id).subscribe(data=>{
+      this.processServis.getProccessOfProjectById(id).subscribe(data=>{
         this.processes=data;
       })
 
-      this.customerService.getCustomerById(this.customerId).subscribe(data=>{
-        this.customer=data;
-      })
     }
 
  
     ngOnInit() {
+
+
+      this.id = parseInt(localStorage.getItem("detailprojectId"));
+      //if(this.id){
+        this.getProcessesOfProject(this.id);
+      //}
+     // else{
+      //  this.getProcesses();
+      //}
      
       //this.id = +this.route.snapshot.paramMap.get('id');
-      let projectId = parseInt(localStorage.getItem("detailprojectId"));
-      this.customerId= parseInt(localStorage.getItem("detail2customerId"));
-      
-   
-    if(!projectId) {
-      alert("Geçersiz işlem.")
-      this.router.navigate(['customer']);
-      return;
-    }
-    
-    this.id=projectId;
-    this.projectDetail(projectId);
+     // let projectId = parseInt(localStorage.getItem("detailprojectId"));
+     // this.customerId= parseInt(localStorage.getItem("detail2customerId"));
+ 
+   // this.id=projectId;
+    //this.projectDetail(projectId);
    }
+
+
+
+   getProcesses(){
+    this.processServis.getProcessess().subscribe(data => {
+      this.processes = data;
+    });
+  }
+  getProcessesOfProject(id:number){
+    this.processServis.getProccessOfProjectById(id).subscribe(data => {
+      this.processes = data;
+    });
+   
+  }
+
+  getProcessesOfCustomer(id:number){
+    this.processServis.getProccessOfProjectById(id).subscribe(data => {
+      this.processes = data;
+    });
+  }
+
+  onSelect(process: Process): void {
+    this.selectedProcess = process;
+  }
+
+  onDelete(process: Process): void {
+    this.processServis.delete(process.ID).subscribe(data=>{
+      if(data){
+       // this.getProcesses();
+       this.ngOnInit()
+        this.alertifyService.success(process.priority +" Öncelikli işlem Silindi");
+      }else{
+        this.alertifyService.error("Hata olustu");
+      }
+      
+    },(err)=>{
+      this.alertifyService.error(err+" Hata olustu");
+    });
+    
+  }
+  onUptdate(process):void{
+    localStorage.removeItem("editprocessId");
+    localStorage.setItem("editprocessId", process.ID.toString());
+    this.router.navigate(['process/uptdate']);
+  }
+  onDetail(process):void{
+    localStorage.removeItem("detailprocessId");
+    localStorage.setItem("detailprocessId", process.ID.toString());
+    this.router.navigate(['content']);
+  }
 
 }

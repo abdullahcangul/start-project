@@ -35,6 +35,8 @@
                     </div>
                   </div>
                   
+                  
+
               </div>
             </div>
           </div>
@@ -55,22 +57,20 @@
             <div class="form-group">
               <label for="name">Mesaj</label>
               <input type="text" formControlName="message" class="form-control" id="message" placeholder="mesaj grin...">
-              <span class="help-block" *ngIf="AddForm.get('message').hasError('required') && AddForm.get('name').touched">
+              <span class="help-block text-danger" *ngIf="AddForm.get('message').hasError('required') && AddForm.get('message').touched">
                Mesaj Adı alanı zorunludur
              </span>
              <span class="help-block text-danger" *ngIf="AddForm.get('message').hasError('maxlength') && AddForm.get('message').touched">
               Max 500 karakter
             </span>
-            <span class="help-block text-danger" *ngIf="AddForm.get('message').hasError('maxlength') && AddForm.get('message').touched">
+            <span class="help-block text-danger" *ngIf="AddForm.get('message').hasError('minlength') && AddForm.get('message').touched">
               Min 5 karakter
               </span>
             </div>
             
           
-            <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
-            <button class="btn btn-light">Cancel</button>
-            <h6>{{AddForm.value|json}}</h6>
-            <h6>{{AddForm.status|json}}</h6>
+            <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">Gönder</button>
+           
           </form>
         </div>
       </div>

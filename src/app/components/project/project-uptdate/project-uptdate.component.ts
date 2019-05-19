@@ -33,12 +33,17 @@ export class ProjectUptdateComponent implements OnInit {
       description: ["", [Validators.required,
         Validators.minLength(2),
         Validators.maxLength(500)]],
+
+        Processes:[""],
       });
 
       this.projectService.getProjectById(id).subscribe(data=>{
         this.project=data;
-        data.ID=id;
+        //data.ID=id;
+        console.log("kkkkkk")
+        console.log(data)
         this.AddForm.setValue(data)
+        
       });
      
     }

@@ -102,6 +102,9 @@ export class EmployeeAddComponent implements OnInit {
         email: ["", [Validators.required,
         Validators.email]],
 
+        profileImageFilename: ["", [Validators.required,
+          ]],
+
         password: ["", [Validators.required,
         Validators.maxLength(15),
         Validators.minLength(3)]],

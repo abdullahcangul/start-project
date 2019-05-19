@@ -22,7 +22,8 @@ export class ProjectAddComponent implements OnInit {
   constructor(private projectService:ProjectService,
     private customerService:CustomerService,
     private employeeService:EmployeeService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+  ) { }
 
   createCustomerForm() {
 
@@ -34,7 +35,7 @@ export class ProjectAddComponent implements OnInit {
 
       description: ["", [Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(25)]],
+        Validators.maxLength(500)]],
 
       EmployeeID: ["", Validators.required],
       CustomerID: ["", Validators.required],
@@ -46,12 +47,16 @@ export class ProjectAddComponent implements OnInit {
     this.createCustomerForm();
     this.getCustomer();
     this.getEmployee();
+    
   }
 
   add(){
+   // this.ngOnInit();
     if(this.AddForm.valid){
       this.project = Object.assign({},this.AddForm.value)
+    
       this.projectService.add(this.project)
+      console.log("dsfsf")
     }
   }
   getCustomer(){

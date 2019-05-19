@@ -38,7 +38,6 @@ export class CustomerAddComponent implements OnInit {
           Validators.maxLength(15),
           Validators.minLength(3)]],
 
-      profileImageFilename: ["", ],
     });
   }
   ngOnInit() {

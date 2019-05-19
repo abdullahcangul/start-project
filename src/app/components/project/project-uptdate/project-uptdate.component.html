@@ -2,9 +2,8 @@
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Customer</h4>
+          <h4 class="card-title">Proje Düzenle</h4>
           <p class="card-description">
-            Basic form elements
           </p>
           <form [formGroup]="AddForm" (ngSubmit)="uptdate()" class="forms-sample">
             <div class="form-group">
@@ -32,10 +31,7 @@
                 </span>
             </div>
           
-            <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
-            <button class="btn btn-light">Cancel</button>
-            <h6>{{AddForm.value|json}}</h6>
-            <h6>{{AddForm.status|json}}</h6>
+            <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">KAYDET</button>
           </form>
         </div>
       </div>

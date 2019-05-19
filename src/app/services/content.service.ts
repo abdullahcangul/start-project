@@ -35,7 +35,8 @@ export class ContentService {
   add(content){
     this.httpClient.post(this.path ,content).subscribe((data)=>{
       this.router.navigateByUrl('content')
-      this.alertifyService.success(content.name+" Eklendi");
+     
+      this.alertifyService.success("Mesaj Gönderildi");
     },(err)=>{
       this.alertifyService.error(err);
     }

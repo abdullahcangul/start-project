@@ -2,15 +2,14 @@
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Customer</h4>
+          <h4 class="card-title">Proje Ekle</h4>
           <p class="card-description">
-            Basic form elements
           </p>
           <form [formGroup]="AddForm" (ngSubmit)="add()" class="forms-sample">
             <div class="form-group">
               <label for="name">Proje Isimi</label>
               <input type="text" formControlName="name" class="form-control" id="name" placeholder="Isim">
-              <span class="help-block" *ngIf="AddForm.get('name').hasError('required') && AddForm.get('name').touched">
+              <span class="help-block  text-danger" *ngIf="AddForm.get('name').hasError('required') && AddForm.get('name').touched">
                 Adı alanı zorunludur
              </span>
              <span class="help-block text-danger" *ngIf="AddForm.get('name').hasError('maxlength') && AddForm.get('name').touched">
@@ -25,7 +24,7 @@
               <label for="description">Açıklama</label>
               <input formControlName="description" type="text" class="form-control" id="description" placeholder="Açıklama">
               <span class="help-block text-danger" *ngIf="AddForm.get('description').hasError('maxlength') && AddForm.get('description').touched">
-                Max 25 karakter
+                Max 500 karakter
               </span>
               <span class="help-block text-danger" *ngIf="AddForm.get('description').hasError('maxlength') && AddForm.get('description').touched">
                 Min 2 karakter
@@ -38,7 +37,7 @@
                   <option class="dropdown-item" [value]="employee.ID" *ngFor="let employee of employees"> {{employee.name}}</option>
                 </select>
 
-                <span class="help-block" *ngIf="AddForm.get('EmployeeID').hasError('required') && AddForm.get('EmployeeID').touched">
+                <span class="help-block  text-danger" *ngIf="AddForm.get('EmployeeID').hasError('required') && AddForm.get('EmployeeID').touched">
                     Çalısan alanı zorunludur
                  </span>
             </div>
@@ -47,15 +46,13 @@
                <select class="form-control form-control-lg" formControlName="CustomerID">
                   <option class="dropdown-item" [value]="customer.ID" *ngFor="let customer of customers"> {{customer.name}}</option>
                 </select>
-                <span class="help-block" *ngIf="AddForm.get('CustomerID').hasError('required') && AddForm.get('CustomerID').touched">
+                <span class="help-block  text-danger" *ngIf="AddForm.get('CustomerID').hasError('required') && AddForm.get('CustomerID').touched">
                     Musteri alanı zorunludur
                  </span>
             </div>
           
-            <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">Submit</button>
-            <button class="btn btn-light">Cancel</button>
-            <h6>{{AddForm.value|json}}</h6>
-            <h6>{{AddForm.status|json}}</h6>
+            <button [disabled]="!AddForm.valid" type="submit" class="btn btn-success mr-2">KAYDET</button>
+        
           </form>
         </div>
       </div>

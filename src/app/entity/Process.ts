@@ -1,7 +1,10 @@
 export class Process {
     ID:number;
     priority:string;
-    status:boolean;
+    status:string;
     projectedFinishDate:number ;
+
+    ProjectID:number;
+    EmployeeID:number;
    
 }

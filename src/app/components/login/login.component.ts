@@ -12,7 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   loginUser:LoginUser;
-  AddForm:FormGroup
+  AddForm:FormGroup;
+ 
 
   constructor(private authService:AuthService,private formBuilder: FormBuilder) { }
 
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
     if(this.AddForm.valid){
       this.loginUser = Object.assign({},this.AddForm.value)
       this.authService.login(this.loginUser)
+     
     }
   }
 }

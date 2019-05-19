@@ -30,16 +30,19 @@ export class TitleListComponent implements OnInit {
   }
 
   onDelete(title: Title): void {
+    if(!confirm('Silmek istediğinizden emin misiniz ?')){
+      return
+    }
     this.titleServis.delete(title.ID).subscribe(data=>{
-      if(data){
+      
         this.getTitles();
         this.alertifyService.success(title.name+" Silindi");
-      }else{
-        this.alertifyService.error("Hata olustu");
-      }
-      
     },(err)=>{
-      this.alertifyService.error(err+" Hata olustu");
+      if(err="Bad Request"){
+        this.alertifyService.error("Unvanın  Employeeleri Var Silinemez!!!");
+      }else{
+        this.alertifyService.error(" Hata olustu");
+      }
     });
     
   }

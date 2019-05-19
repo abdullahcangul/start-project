@@ -16,10 +16,12 @@
                            
                             <div class="ticket-details col-md-9">
                               <div class="d-flex">
-                                <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Firma iletişim bilgileri :</p>
-                                <p class="text-primary mr-1 mb-0">Email:[{{customer.email}}]-Url:{{customer.url}}</p>
-                                
+                                <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap"><strong>Firma iletişim bilgileri</strong> :</p>
+                                <!--<p class="text-primary mr-1 mb-0">Email:[{{customer.email}}]-Url:{{customer.url}}</p>-->
+                               
                               </div>
+                              <p><strong>Email</strong>:[{{customer.email}}]-<strong>Url</strong>:{{customer.url}}</p>
+                              
                               <div class="row text-dark d-md-flex d-none" style="margin-left:1px">
                                 <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">   Yetkili:</p>
                                 <p class="mb-0 ellipsis">{{customer.competnent}}</p>

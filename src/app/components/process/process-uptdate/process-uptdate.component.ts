@@ -3,6 +3,8 @@ import { Process } from 'src/app/entity/Process';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProcessService } from 'src/app/services/process.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/entity/Customer';
 
 @Component({
   selector: 'app-process-uptdate',
@@ -12,7 +14,7 @@ import { ProcessService } from 'src/app/services/process.service';
 export class ProcessUptdateComponent implements OnInit {
 
   process:Process;
-  AddForm:FormGroup
+  AddForm:FormGroup;
   id:number;
 
   constructor(  
@@ -34,6 +36,7 @@ export class ProcessUptdateComponent implements OnInit {
         Validators.maxLength(25)]],
 
         projectedFinishDate: [""],
+        EmployeeID: ["", Validators.required],
       });
 
       this.processService.getProcessById(id).subscribe(data=>{
@@ -47,7 +50,6 @@ export class ProcessUptdateComponent implements OnInit {
     ngOnInit() {
       //this.id = +this.route.snapshot.paramMap.get('id');
       let id = parseInt(localStorage.getItem("editprocessId"));
-    
     if(!id) {
       alert("Geçersiz işlem.")
       this.router.navigate(['process']);
@@ -57,7 +59,7 @@ export class ProcessUptdateComponent implements OnInit {
      this.updateForm(id);
      
    }
- 
+
    uptdate(){
      if(this.AddForm.valid){
        this.process = Object.assign({},this.AddForm.value)

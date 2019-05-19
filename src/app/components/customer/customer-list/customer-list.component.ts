@@ -13,33 +13,40 @@ export class CustomerListComponent implements OnInit {
 
   selectedCustomer: Customer;
   customers:Customer[];
+
   
-  constructor(private router: Router,private customerServis:CustomerService,private alertifyService:AlertifyService) { }
+  constructor(private router: Router,
+    private customerServis:CustomerService,
+    private alertifyService:AlertifyService) { }
 
   ngOnInit() {
     this.getCustomers();
   }
+
   getCustomers(){
     this.customerServis.getCustomers().subscribe(data => {
       this.customers = data;
     });
   }
 
+
   onSelect(customer: Customer): void {
     this.selectedCustomer = customer;
   }
 
   onDelete(customer: Customer): void {
+    if(!confirm('Silmek istediğinizden emin misiniz ?')){
+      return
+    }
     this.customerServis.delete(customer.ID).subscribe(data=>{
-      if(data){
         this.getCustomers();
         this.alertifyService.success(customer.name+" Silindi");
-      }else{
-        this.alertifyService.error("Hata olustu");
-      }
-      
     },(err)=>{
-      this.alertifyService.error(err+" Hata olustu");
+      if(err="Bad Request"){
+        this.alertifyService.error("Müşterinin Projeleri Var Silinemez!!!");
+      }else{
+        this.alertifyService.error(" Hata olustu");
+      }
     });
     
   }

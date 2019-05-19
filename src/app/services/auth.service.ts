@@ -46,8 +46,11 @@ TOKEN_KEY="token";
         console.log(data["access_token"]);
        // this.decodedToken = this.jwtHelper.decodeToken("Bearer "+data["access_token"])
        this.alertifyService.success("giriş basarılı");
-        this.router.navigateByUrl("/employee")
+        this.router.navigateByUrl("/dashboard")
 
+      },err=>{
+        console.log(err)
+        this.alertifyService.error("Kullanıcı Adı veya Sifre hatalı");
       });
   }
 
@@ -61,7 +64,8 @@ TOKEN_KEY="token";
   }
 
   logOut(){
-    localStorage.removeItem(this.TOKEN_KEY)
+    localStorage.clear();
+    this.router.navigateByUrl("/login")
   }
   getToken(){
 return localStorage.getItem(this.TOKEN_KEY);

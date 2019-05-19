@@ -5,6 +5,7 @@ import { EmployeeService } from '../services/employee.service';
 import { CustomerService } from '../services/customer.service';
 import { Employee } from '../entity/Employee';
 import { Customer } from '../entity/Customer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,7 +17,8 @@ export class SidebarComponent implements OnInit {
   
   constructor(private authService:AuthService,
     private employeeService:EmployeeService,
-    private customerService:CustomerService) { }
+    private customerService:CustomerService,
+    private router: Router,) { }
 
   userInfo:InfoUser;
   employee:Employee;
@@ -33,7 +35,8 @@ export class SidebarComponent implements OnInit {
   getUserInfo(){
     this.authService.getUserinfo().subscribe(data=>{
       this.userInfo=data;
-      console.log(data)
+      localStorage.removeItem("role")
+      localStorage.setItem("role",this.userInfo.role)
     },(err)=>{},
     ()=>{
       this.checkUserType(this.userInfo);
@@ -45,16 +48,20 @@ export class SidebarComponent implements OnInit {
     if(userInfo.role=="calisan"){
       this.employeeService.getEmployeeById(userInfo.clientId).subscribe(data=>{
         this.employee=data;
+        localStorage.setItem("loginemployeeId",data.ID.toString());
         console.log(data)
       })
     }
     else{
       this.customerService.getCustomerById(userInfo.clientId).subscribe(data=>{
         this.customer=data;
-        console.log(data)
+        localStorage.setItem("logincustomerId",data.ID.toString());
       })
     }
-    console.log(this.customer)
-    console.log(this.employee)
+  }
+
+  RouterProcess(){
+    localStorage.removeItem("detailprojectId");
+    this.router.navigateByUrl("process")
   }
 }

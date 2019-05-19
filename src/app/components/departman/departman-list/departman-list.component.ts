@@ -29,16 +29,21 @@ export class DepartmanListComponent implements OnInit {
   }
 
   onDelete(departmant: Departmant): void {
+    if(!confirm('Silmek istediğinizden emin misiniz ?')){
+      return
+    }
     this.departmantServis.delete(departmant.ID).subscribe(data=>{
-      if(data){
+     
         this.getDepartmants();
         this.alertifyService.success(departmant.name+" Silindi");
-      }else{
-        this.alertifyService.error("Hata olustu");
-      }
+     
       
     },(err)=>{
-      this.alertifyService.error(err+" Hata olustu");
+      if(err="Bad Request"){
+        this.alertifyService.error("Departmanın Employeeleri Var Silinemez!!!");
+      }else{
+        this.alertifyService.error(" Hata olustu");
+      }
     });
     
   }

@@ -45,6 +45,7 @@ export class EmployeeListComponent implements OnInit {
   onActive(employee):void{
     
     this.employeeServis.activateEmployee(employee.ID).subscribe(data=>{
+      this.getEmployees()
       if(data){
         
         this.alertifyService.success(employee.name+" aktif oldu");
@@ -53,11 +54,8 @@ export class EmployeeListComponent implements OnInit {
         this.alertifyService.success(employee.name+" pasif oldu");
       }
     })
-    this.ngOnDestroy() 
   }
-  ngOnDestroy() { 
-   this.getEmployees()
-   }
+
   onUptdate(employee):void{
     localStorage.removeItem("editemployeeId");
     localStorage.setItem("editemployeeId", employee.ID.toString());

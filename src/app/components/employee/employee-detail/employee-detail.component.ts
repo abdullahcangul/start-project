@@ -6,6 +6,7 @@ import { DepartmanService } from 'src/app/services/departman.service';
 import { Employee } from 'src/app/entity/Employee';
 import { Title } from 'src/app/entity/Title';
 import { Departmant } from 'src/app/entity/Departmant';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-employee-detail',
@@ -26,6 +27,7 @@ export class EmployeeDetailComponent implements OnInit {
     private router:Router,
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
+    private alertifyService:AlertifyService,
     private departmantServices:DepartmanService,
     private titleServices:TitleService) { }
 
@@ -69,7 +71,18 @@ export class EmployeeDetailComponent implements OnInit {
     this.id=employeeId;
     this.updateEmployeeForm(employeeId);
    }
- 
+   
+   AktifPasif(employee:Employee){
+      this.employeeService.activateEmployee(employee.ID).subscribe(data=>{
+        if(data){
+        
+          this.alertifyService.success(employee.name+" aktif oldu");
+        }
+        else{
+          this.alertifyService.success(employee.name+" pasif oldu");
+        }
+      });
+   }
   
 
 }

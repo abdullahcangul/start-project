@@ -30,6 +30,7 @@ export class ContentAddComponent implements OnInit {
   }
 
   add(){
+    
     if(this.AddForm.valid){
       this.content = Object.assign({},this.AddForm.value)
       this.content.isCustomer=true;//otantike olunca al

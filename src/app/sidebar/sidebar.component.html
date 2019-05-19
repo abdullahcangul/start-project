@@ -1,5 +1,5 @@
-<nav *ngIf="employee!=null;else musteri" class="sidebar sidebar-offcanvas" id="sidebar">
-  <ul class="nav">
+<nav  class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul *ngIf="employee!=null;else musteri" class="nav">
     <li class="nav-item nav-profile">
       <div class="nav-link">
         <div class="user-wrapper">
@@ -27,13 +27,13 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/employee" routerLinkActive="active">
-        <i class="menu-icon mdi mdi-notification-clear-all"></i>
+        <i class="menu-icon fa fa-group"></i>
         <span class="menu-title">Kullanıcılar</span>
       </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" routerLink="/customer" routerLinkActive="active">
-          <i class="menu-icon mdi mdi-dna"></i>
+          <i class="menu-icon fa fa-handshake-o"></i>
           <span class="menu-title">Çalısılan firmalar</span>
         </a>
       </li>
@@ -44,29 +44,26 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/process" routerLinkActive="active">
-        <i class="menu-icon mdi mdi-trackpad"></i>
-        <span class="menu-title">İşlemler</span>
+      <a class="nav-link" (click)=RouterProcess()  routerLinkActive="active">
+        <i class="menu-icon fa fa-linode"></i>
+        <span class="menu-title">Ticket</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/title" routerLinkActive="active">
-        <i class="menu-icon mdi mdi-texture"></i>
-        <span class="menu-title">Title</span>
+        <i class="menu-icon fa fa-vcard"></i>
+        <span class="menu-title">Unvanlar</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/departmant" routerLinkActive="active">
         <i class="menu-icon mdi mdi-content-copy"></i>
-        <span class="menu-title">Depertmant</span>
+        <span class="menu-title">Departmanlar</span>
       </a>
     </li>
     
   </ul>
-</nav>
-
-<ng-template #musteri>
-    <nav  class="sidebar sidebar-offcanvas" id="sidebar">
+  <ng-template #musteri>
         <ul class="nav">
           <li class="nav-item nav-profile">
             <div class="nav-link">
@@ -97,12 +94,7 @@
               <span class="menu-title">Projeler</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/process" routerLinkActive="active">
-              <i class="menu-icon mdi mdi-trackpad"></i>
-              <span class="menu-title">İşlemler</span>
-            </a>
-          </li>
         </ul>
-      </nav>
 </ng-template>
+</nav>
+

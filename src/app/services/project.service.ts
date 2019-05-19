@@ -3,8 +3,9 @@ import { Project } from '../entity/Project';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertifyService } from './alertify.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ProcessService } from './process.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +31,16 @@ export class ProjectService {
   getProjectById(projectID):Observable<Project>{
       return this.httpClient.get<Project>(this.path+"/"+projectID)
   }
-  
 
+  getProjectsById(id):Observable<Project[]>{
+    return this.httpClient.get<Project[]>("http://localhost:58371/api/projects"+"/"+id)
+  }
+  
   add(project){
     this.httpClient.post(this.path ,project).subscribe((data)=>{
       this.router.navigateByUrl('project')
       this.alertifyService.success(project.name+" Eklendi");
+      
     },(err)=>{
       this.alertifyService.error(err);
     }
@@ -47,12 +52,13 @@ export class ProjectService {
      // this.router.navigateByUrl('customer/detail/'+data["ID"])
      this.router.navigateByUrl('project');
      this.alertifyService.success(project.name+" Güncellendi");
-    },(err)=>{
+    },err=>{
+      console.log(err);
       this.alertifyService.error(err);
     });
   }
    
-  delete(projectId):Observable<Boolean>{
-    return this.httpClient.delete<Boolean>(this.path + "/"+projectId);
+  delete(projectId):Observable<any>{
+    return this.httpClient.delete<any>(this.path + "/"+projectId);
   }
 }
